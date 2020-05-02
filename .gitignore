@@ -10,8 +10,6 @@
 # OSX auto-save files
 **/*/.DS_Store
 
-# vagrant files
-**/*/.vagrant/*
 
 # Editor Config
 
@@ -24,10 +22,11 @@ pyenv
 **/*/.pyenv/*
 
 # ignore index.html
-webapp/src/index.html
-webapp/package-lock.json
+stunning-chainsaw/src/index.html
+stunning-chainsaw/package-lock.json
 
 # node modules
-webapp/node_modules
+stunning-chainsaw/node_modules
 **/*/node_modules/*
+*/node_modules/*
 
