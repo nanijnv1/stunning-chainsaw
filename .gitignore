@@ -1,0 +1,33 @@
+
+# Byte-code files
+*.pyc
+**/*.log
+
+# IntelliJ Project files
+.idea
+*.iml
+
+# OSX auto-save files
+**/*/.DS_Store
+
+# vagrant files
+**/*/.vagrant/*
+
+# Editor Config
+
+# pyenv folder
+pyenv
+**/*/pyenv/*
+
+# .pyenv folder only for source maping in intellij IDEA
+.pyenv
+**/*/.pyenv/*
+
+# ignore index.html
+webapp/src/index.html
+webapp/package-lock.json
+
+# node modules
+webapp/node_modules
+**/*/node_modules/*
+
