@@ -1,9 +1,11 @@
 import React, {Component} from "react";
-// import ReactDOM from 'react-dom';
-// import _ from 'underscore'
+import ReactDOM from 'react-dom';
+import _ from 'underscore'
 import Draggable from 'react-draggable';
+import ReactTestUtils from 'react-dom/test-utils';
 // import {DragDropContainer, DropTarget} from 'react-drag-drop-container';
 // const {ReactDraggable: Draggable} = window;
+import Card from "./card";
 
 
 class First extends Component {
@@ -13,7 +15,7 @@ class First extends Component {
         this.state = {
             handleName: "handle",
             change: [],
-            counter: 0
+            counter: 0,
             // firstTime: true;
         }
         this.handel = this.handel.bind(this);
@@ -32,15 +34,17 @@ class First extends Component {
                         <div>Title</div>
                     </strong>
                 </div>
-                <div>click on title to drag
-                    <div>
-                        {this.state.change.map(comp => (comp.element))}
-                    </div>
+                <div className="card-body">click    on title to drag
+                    {this.state.change.map(comp => (comp.childPresent ? null : comp.element))}
+                    {/*{this.state.change.map(comp => (comp.element))}*/}
                 </div>
             </div>
 
         </Draggable>;
-        let payload = {element:element, counter: this.state.counter}
+        if(!_.isEmpty(components)){
+            components[components.length - 1].childPresent = true;
+        }
+        let payload = {element : element, counter: this.state.counter , childPresent:false}
         components.push(payload);
         console.log(components)
         this.setState({
@@ -66,7 +70,7 @@ class First extends Component {
                         </div>
                         <div className="card-body">click on title to drag
                             {/*{this.state.firstTime ? this.state.change.map(comp => (comp['element'])) : null}*/}
-                                {this.state.change.map(comp => (comp['element']))}
+                            {this.state.change.map(comp => (comp.childPresent ? null : comp.element))}
                         </div>
                     </div>
 
