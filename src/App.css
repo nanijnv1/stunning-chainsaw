@@ -8,9 +8,9 @@
 }
 
 .card-width {
-    min-width: 150px !important;
+    min-width: 50% !important;
     max-width: 50%;
-    min-height: 200px;
+    min-height: 40%;
 }
 
 @media (prefers-reduced-motion: no-preference) {

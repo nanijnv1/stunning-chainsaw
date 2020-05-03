@@ -16,17 +16,29 @@ class First extends Component {
             handleName: "handle",
             change: [],
             counter: 0,
+            controlledPosition: {
+                x: 0, y: 0
+            }
             // firstTime: true;
         }
         this.handel = this.handel.bind(this);
     }
+
+    onControlledDrag = (e, position) => {
+        const {x, y} = position;
+        this.setState({controlledPosition: {x, y}});
+    };
+    onControlledDragStop = (e, position) => {
+        this.onControlledDrag(e, position);
+        // this.onStop();
+    };
 
     // state = {};
 
     handel = (element) => {
         let components = this.state.change;
         // This is the element which creates the card.
-        element = <Draggable bounds="parent" handle={"." + this.state.handleName}>
+        element = <Draggable onStop={this.onControlledDragStop} bounds="parent" defaultPosition={{x: this.state.controlledPosition.x, y: this.state.controlledPosition.y}} handle={"." + this.state.handleName}>
             <div className="box no-cursor card card-width">
                 <div className="card-header">
                     <strong className={this.state.handleName}>
@@ -34,17 +46,22 @@ class First extends Component {
                         <div>Title</div>
                     </strong>
                 </div>
-                <div className="card-body">click    on title to drag
+                <div className="card-body">click on title to drag
                     {this.state.change.map(comp => (comp.childPresent ? null : comp.element))}
                     {/*{this.state.change.map(comp => (comp.element))}*/}
                 </div>
             </div>
 
         </Draggable>;
+        let position = {x:0,y:0}
         if(!_.isEmpty(components)){
+            position = {x:components[components.length - 1].position.x, y:components[components.length - 1].position.y};
             components[components.length - 1].childPresent = true;
+            components[components.length - 1].position = position;
+
+            // position = {x:components[components.length - 1].position.x, y:components[components.length - 1].position.y};
         }
-        let payload = {element : element, counter: this.state.counter , childPresent:false}
+        let payload = {element : element, counter: this.state.counter , childPresent:false, position:position}
         components.push(payload);
         console.log(components)
         this.setState({
